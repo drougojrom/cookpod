@@ -11,6 +11,15 @@ jobs:
 
     name: Build and test
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:10
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - "5432"
 
     steps:
     - uses: actions/checkout@v2
