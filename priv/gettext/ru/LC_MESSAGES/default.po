@@ -1,0 +1,5 @@
+msgid ""
+
+"Language: ru\n"
+msgid "Welcome to %{name}!"
+msgstr "Превед %{name}!"
