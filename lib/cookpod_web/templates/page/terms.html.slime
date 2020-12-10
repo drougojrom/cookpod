@@ -1,0 +1,2 @@
+h1
+  =gettext("Terms and conditions are here!")
