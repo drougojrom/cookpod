@@ -1,6 +1,6 @@
 # Cookpod
 
-[![build](https://github.com/drougojrom/cookpod/workflows/cookpod/badge.svg)](https://github.com/drougojrom/cookpod/actions)
+[![build](https://img.shields.io/github/workflow/status/drougojrom/cookpod/Elixir%20CI)](https://github.com/drougojrom/cookpod/actions)
 [![codebeat badge](https://codebeat.co/badges/7bd33347-7948-474f-83f7-7d61689d30da)](https://codebeat.co/projects/github-com-drougojrom-cookpod-main)
 [![Coverage Status](https://coveralls.io/repos/github/drougojrom/cookpod/badge.svg?branch=main)](https://coveralls.io/github/drougojrom/cookpod?branch=main)
 
