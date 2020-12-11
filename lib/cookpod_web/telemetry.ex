@@ -1,4 +1,7 @@
 defmodule CookpodWeb.Telemetry do
+  @moduledoc """
+  doc
+  """
   use Supervisor
   import Telemetry.Metrics
 
