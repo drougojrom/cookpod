@@ -1,10 +1,10 @@
 .mt-4
-  = form_for @changeset, Routes.session_path(@conn, :create), fn form ->
+  = form_for :user, Routes.session_path(@conn, :create), fn form ->
     .form-group.row
-      = label(form, :email, "Email", class: "col-sm-1 col-form-label")
+      = label(form, :name, "name", class: "col-sm-1 col-form-label")
       .col-sm-4
-        = text_input(form, :email, class: "form-control", placeholder: "Email")
-        = error_tag(form, :email)
+        = text_input(form, :name, class: "form-control", placeholder: "Name")
+        = error_tag(form, :name)
     .form-group.row
       = label(form, :password, "Password", class: "col-sm-1 col-form-label")
       .col-sm-4

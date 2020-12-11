@@ -7,10 +7,10 @@ defmodule CookpodWeb.SessionController do
   end
 
   def new(conn, _params) do
-
+    render(conn, "new.html", errors: %{})
   end
 
-  def create(conn, %{"user": user}) do
+  def create(conn, %{"user" => user}) do
     case validate_user(user) do
       errors when map_size(errors) == 0 ->
       conn
