@@ -1,4 +1,4 @@
-defmodule CookpodWeb.PageControllerTest do
+defmodule CookpodWeb.SessionControllerTest do
   use CookpodWeb.ConnCase
 
   def with_valid_authorization_header(conn) do
@@ -6,10 +6,10 @@ defmodule CookpodWeb.PageControllerTest do
     |> put_req_header("authorization", "Basic YWRtaW46cGFzc3dvcmQ=")
   end
 
-  test "GET /", %{conn: conn} do
+  test "GET /sessions/new", %{conn: conn} do
     conn = conn
     |> with_valid_authorization_header()
-    |> get("/")
-    assert html_response(conn, 200) =~ "Welcome to Phoenix!"
+    |> get("/sessions/new")
+    assert html_response(conn, 200) =~ "Log in"
   end
 end
