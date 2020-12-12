@@ -37,7 +37,7 @@ defmodule CookpodWeb.SessionController do
     end)
   end
 
-  def fallback(conn, :ok) do
+  defp fallback(conn, :ok) do
     Plug.Conn.send_resp(conn, 200, "I'm a fallback")
   end
 end
