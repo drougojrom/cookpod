@@ -1,6 +1,8 @@
 defmodule CookpodWeb.SessionController do
   use CookpodWeb, :controller
 
+  action_fallback :fallback
+
   def show(conn, _params) do
     current_user = get_session(conn, :current_user)
     render(conn, "show.html", current_user: current_user)
@@ -32,5 +34,9 @@ defmodule CookpodWeb.SessionController do
     |> Enum.reduce(%{}, fn {name, value}, acc ->
       if String.length(value) == 0, do: Map.put(acc, name, "#{name} cannot be blank"), else: acc
     end)
+  end
+
+  def fallback(conn, :ok) do
+    Plug.Conn.send_resp(conn, 200, "I'm a fallback")
   end
 end

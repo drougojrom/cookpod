@@ -1,7 +1,10 @@
 defmodule CookpodWeb.Router do
   use CookpodWeb, :router
+  use Plug.ErrorHandler
+  import Plug.BasicAuth
 
   pipeline :browser do
+    plug :basic_auth, username: "admin", password: "password"
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
@@ -13,12 +16,21 @@ defmodule CookpodWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :protected do
+    plug CookpodWeb.AuthPlug
+  end
+
   scope "/", CookpodWeb do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "/terms", PageController, :terms
     resources "/sessions", SessionController, singleton: true
+  end
+
+  scope "/", CookpodWeb do
+    pipe_through [:browser, :protected]
+
+    get "/terms", PageController, :terms
   end
 
   # Other scopes may use custom stacks.
@@ -40,5 +52,29 @@ defmodule CookpodWeb.Router do
       pipe_through :browser
       live_dashboard "/dashboard", metrics: CookpodWeb.Telemetry
     end
+  end
+
+
+  require Logger
+  def handle_errors(conn, %{kind: :error, reason: %Phoenix.Router.NoRouteError{}}) do
+    conn
+    |> fetch_session()
+    |> fetch_flash()
+    |> put_layout({CookpodWeb.LayoutView, :app})
+    |> put_view(CookpodWeb.ErrorView)
+    |> render("404.html")
+  end
+
+  def handle_errors(conn, %{kind: :error, reason: %Phoenix.ActionClauseError{}}) do
+    conn
+    |> fetch_session()
+    |> fetch_flash()
+    |> put_layout({CookpodWeb.LayoutView, :app})
+    |> put_view(CookpodWeb.ErrorView)
+    |> render("400.html")
+  end
+
+  def handle_errors(conn, _) do
+    conn
   end
 end
