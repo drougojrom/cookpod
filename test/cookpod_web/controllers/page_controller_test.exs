@@ -7,9 +7,11 @@ defmodule CookpodWeb.PageControllerTest do
   end
 
   test "GET /", %{conn: conn} do
-    conn = conn
-    |> with_valid_authorization_header()
-    |> get("/")
+    conn =
+      conn
+      |> with_valid_authorization_header()
+      |> get("/")
+
     assert html_response(conn, 200) =~ "Welcome to Phoenix!"
   end
 end

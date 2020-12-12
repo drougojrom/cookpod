@@ -7,9 +7,11 @@ defmodule CookpodWeb.SessionControllerTest do
   end
 
   test "GET /sessions/new", %{conn: conn} do
-    conn = conn
-    |> with_valid_authorization_header()
-    |> get("/sessions/new")
+    conn =
+      conn
+      |> with_valid_authorization_header()
+      |> get("/sessions/new")
+
     assert html_response(conn, 200) =~ "Log in"
   end
 end

@@ -1,5 +1,4 @@
 defmodule CookpodWeb.FallbackPlug do
-
   @moduledoc """
   Plug for fallback
   """

@@ -1,5 +1,4 @@
 defmodule CookpodWeb.AuthPlug do
-
   @moduledoc """
   Plug for auth
   """
@@ -14,8 +13,9 @@ defmodule CookpodWeb.AuthPlug do
     case get_session(conn, :current_user) do
       nil ->
         redirect(conn, to: Routes.session_path(conn, :new))
+
       _ ->
         conn
-      end
+    end
   end
 end

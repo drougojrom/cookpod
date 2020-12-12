@@ -13,6 +13,7 @@ defmodule CookpodWeb.ViewHelpers do
     case get_session(conn, :current_user) do
       nil ->
         "anonymous"
+
       current_user ->
         current_user
     end

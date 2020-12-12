@@ -15,11 +15,12 @@ defmodule CookpodWeb.SessionController do
   def create(conn, %{"user" => user}) do
     case validate_user(user) do
       errors when map_size(errors) == 0 ->
-      conn
-      |> put_session(:current_user, user["name"])
-      |> redirect(to: Routes.page_path(conn, :index))
-    errors ->
-      render(conn, "new.html", errors: errors)
+        conn
+        |> put_session(:current_user, user["name"])
+        |> redirect(to: Routes.page_path(conn, :index))
+
+      errors ->
+        render(conn, "new.html", errors: errors)
     end
   end
 

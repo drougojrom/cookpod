@@ -54,8 +54,8 @@ defmodule CookpodWeb.Router do
     end
   end
 
-
   require Logger
+
   def handle_errors(conn, %{kind: :error, reason: %Phoenix.Router.NoRouteError{}}) do
     conn
     |> fetch_session()
