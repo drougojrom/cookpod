@@ -1,4 +1,9 @@
 defmodule CookpodWeb.FallbackPlug do
+
+  @moduledoc """
+  Plug for fallback
+  """
+
   def init(opts), do: opts
 
   def call(conn, _opts) do
