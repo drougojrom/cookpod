@@ -1,4 +1,8 @@
 defmodule CookpodWeb.AuthUserCase do
+  @moduledoc """
+  Module for basic validation case
+  """
+
   use ExUnit.CaseTemplate
 
   import Plug.Conn
@@ -10,7 +14,7 @@ defmodule CookpodWeb.AuthUserCase do
       conn
       |> with_valid_authorization_header()
 
-    {:ok, current_user: %{name: "Dow", password: "123asdaA"}, conn: conn}
+    {:ok, conn: conn}
   end
 
   def with_valid_authorization_header(conn) do
