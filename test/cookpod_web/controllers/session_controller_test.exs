@@ -35,4 +35,13 @@ defmodule CookpodWeb.SessionControllerTest do
     assert get_session(conn, :current_user) == nil
     assert redirected_to(conn, 302) == Routes.page_path(conn, :index)
   end
+
+  @tag authenticated_user: true
+  test "GET /sessions/", %{conn: conn} do
+    conn =
+      conn
+      |> init_test_session(%{current_user: "Dow"})
+
+    assert get_session(conn, :current_user) == "Dow"
+  end
 end
