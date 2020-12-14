@@ -4,8 +4,9 @@ defmodule CookpodWeb.SessionControllerTest do
 
   @tag authenticated_user: true
   test "GET /sessions/new", %{conn: conn} do
-    conn
-    |> get("/sessions/new")
+    conn =
+      conn
+      |> get("/sessions/new")
 
     assert html_response(conn, 200) =~ "Log in"
   end
@@ -14,8 +15,9 @@ defmodule CookpodWeb.SessionControllerTest do
   test "POST /sessions", %{conn: conn} do
     path = Routes.session_path(conn, :create)
 
-    conn
-    |> post(path, %{user: %{name: "Dow", password: "123asdaA"}})
+    conn =
+      conn
+      |> post(path, %{user: %{name: "Dow", password: "123asdaA"}})
 
     assert get_session(conn, :current_user) == "Dow"
     assert redirected_to(conn, 302) == Routes.page_path(conn, :index)
@@ -25,9 +27,10 @@ defmodule CookpodWeb.SessionControllerTest do
   test "DELETE /sessions/delete", %{conn: conn} do
     path = Routes.session_path(conn, :delete)
 
-    conn
-    |> init_test_session(%{current_user: "Dow"})
-    |> delete(path)
+    conn =
+      conn
+      |> init_test_session(%{current_user: "Dow"})
+      |> delete(path)
 
     assert get_session(conn, :current_user) == nil
     assert redirected_to(conn, 302) == Routes.page_path(conn, :index)
@@ -35,8 +38,9 @@ defmodule CookpodWeb.SessionControllerTest do
 
   @tag authenticated_user: true
   test "GET /sessions/", %{conn: conn} do
-    conn
-    |> init_test_session(%{current_user: "Dow"})
+    conn =
+      conn
+      |> init_test_session(%{current_user: "Dow"})
 
     assert get_session(conn, :current_user) == "Dow"
   end
