@@ -9,3 +9,8 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+changeset =
+  User.changeset(%User{}, %{"user" => %{"email" => "test@gmail.com", "password" => "12123"}})
+
+Repo.insert!(changeset)

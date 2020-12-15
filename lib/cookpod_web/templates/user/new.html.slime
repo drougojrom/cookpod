@@ -1,7 +1,7 @@
 h2 Sign up
 
 .mt-4
-  = form_for :user, Routes.user_path(@conn, :create), fn form ->
+  = form_for @changeset, Routes.user_path(@conn, :create), fn form ->
     .form-group.row
       = label(form, :email, "Email", class: "col-sm-1 col-form-label")
       .col-sm-4

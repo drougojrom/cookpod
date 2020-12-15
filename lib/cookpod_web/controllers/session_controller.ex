@@ -16,9 +16,11 @@ defmodule CookpodWeb.SessionController do
 
   def create(conn, %{"user" => %{"email" => email, "password" => password}}) do
     user = Repo.get_by(User, email: email)
+
     case Argon2.check_pass(user, password) do
       {:ok, user} ->
         text(conn, "Все хорошо")
+
       {:error, _} ->
         text(conn, "Неправильный логин или пароль")
     end
