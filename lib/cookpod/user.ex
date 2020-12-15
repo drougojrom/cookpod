@@ -15,6 +15,7 @@ defmodule Cookpod.User do
     user
     |> cast(attrs, [:email, :password])
     |> validate_required([:email])
+    |> validate_length(:password, min: 4)
     |> encrypt_password()
     |> unique_constraint(:email)
   end

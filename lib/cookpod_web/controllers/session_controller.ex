@@ -14,15 +14,13 @@ defmodule CookpodWeb.SessionController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"user" => attrs}) do
-    changeset = User.changeset(%User{}, attrs)
-    case Repo.insert(changeset) do
+  def create(conn, %{"user" => %{"email" => email, "password" => password}}) do
+    user = Repo.get_by(User, email: email)
+    case Argon2.check_pass(user, password) do
       {:ok, user} ->
-        conn
-        |> put_session(:current_user, user)
-        |> redirect(to: Routes.page_path(conn, :index))
-      {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        text(conn, "Все хорошо")
+      {:error, _} ->
+        text(conn, "Неправильный логин или пароль")
     end
   end
 
