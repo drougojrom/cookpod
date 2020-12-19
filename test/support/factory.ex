@@ -1,5 +1,4 @@
 defmodule Cookpod.Factory do
-
   @moduledoc """
   Factory for models
   """

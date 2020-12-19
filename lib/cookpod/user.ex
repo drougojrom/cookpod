@@ -1,5 +1,4 @@
 defmodule Cookpod.User do
-
   @moduledoc """
   User model
   """
