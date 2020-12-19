@@ -1,4 +1,9 @@
 defmodule Cookpod.Factory do
+
+  @moduledoc """
+  Factory for models
+  """
+
   use ExMachina.Ecto, repo: Cookpod.Repo
 
   alias Cookpod.User
