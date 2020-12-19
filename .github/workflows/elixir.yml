@@ -38,7 +38,7 @@ jobs:
     - name: Credo
       run: mix credo
     - name: Format
-      run: mix format  
+      run: mix format --check-formatted
     - name: Run tests
       run: mix test
       env:

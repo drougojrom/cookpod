@@ -17,6 +17,14 @@ defmodule CookpodWeb.ErrorHelpers do
     end)
   end
 
+  def form_control(form, field) do
+    if Enum.any?(Keyword.get_values(form.errors, field)) do
+      "form-control is-invalid"
+    else
+      "form-control"
+    end
+  end
+
   @doc """
   Translates an error message using gettext.
   """
