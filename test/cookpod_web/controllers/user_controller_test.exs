@@ -17,7 +17,12 @@ defmodule CookpodWeb.UserControllerTest do
   @tag authenticated_user: true
   test "it creates user if params are valid", %{conn: conn} do
     path = Routes.user_path(conn, :create)
-    valid_params = %{"email" => "test@test.com", "password" => "123asdaA", "password_confirmation" => "123asdaA"}
+
+    valid_params = %{
+      "email" => "test@test.com",
+      "password" => "123asdaA",
+      "password_confirmation" => "123asdaA"
+    }
 
     conn = post(conn, path, %{"user" => valid_params})
 
@@ -28,13 +33,13 @@ defmodule CookpodWeb.UserControllerTest do
 
   @tag authenticated_user: true
   test "it does not create user if params are invalid", %{conn: conn} do
-     path = Routes.user_path(conn, :create)
-     invalid_params = %{}
+    path = Routes.user_path(conn, :create)
+    invalid_params = %{}
 
-     conn = post(conn, path, %{"user" => invalid_params})
+    conn = post(conn, path, %{"user" => invalid_params})
 
-     user = Repo.get_by(User, email: "test@test.com")
+    user = Repo.get_by(User, email: "test@test.com")
 
-     assert user == nil
+    assert user == nil
   end
 end
