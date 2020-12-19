@@ -47,7 +47,8 @@ defmodule Cookpod.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:phoenix_slime, "~> 0.13.1"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:argon2_elixir, "~> 2.3"}
+      {:argon2_elixir, "~> 2.3"},
+      {:ex_machina, "~> 2.4", only: :test},
     ]
   end
 

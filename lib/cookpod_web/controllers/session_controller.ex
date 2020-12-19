@@ -18,8 +18,10 @@ defmodule CookpodWeb.SessionController do
     user = Repo.get_by(User, email: email)
 
     case Argon2.check_pass(user, password) do
-      {:ok, _} ->
-        text(conn, "Все хорошо")
+      {:ok, user} ->
+        conn
+        |> put_session(:current_user, user)
+        |> redirect(to: Routes.page_path(conn, :index))
 
       {:error, _} ->
         text(conn, "Неправильный логин или пароль")

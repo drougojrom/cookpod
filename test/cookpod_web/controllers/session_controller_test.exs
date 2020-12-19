@@ -2,6 +2,8 @@ defmodule CookpodWeb.SessionControllerTest do
   use CookpodWeb.ConnCase
   use CookpodWeb.AuthUserCase
 
+  import Cookpod.Factory
+
   @tag authenticated_user: true
   test "GET /sessions/new", %{conn: conn} do
     conn =
@@ -13,13 +15,17 @@ defmodule CookpodWeb.SessionControllerTest do
 
   @tag authenticated_user: true
   test "POST /sessions", %{conn: conn} do
+    user = insert(:user)
     path = Routes.session_path(conn, :create)
+
+    valid_params = %{"email" => user.email, "password" => user.password}
 
     conn =
       conn
-      |> post(path, %{user: %{name: "Dow", password: "123asdaA"}})
+      |> init_test_session(%{})
+      |> post(path, %{user: valid_params})
 
-    assert get_session(conn, :current_user) == "Dow"
+    assert get_session(conn, :current_user).email == user.email
     assert redirected_to(conn, 302) == Routes.page_path(conn, :index)
   end
 
