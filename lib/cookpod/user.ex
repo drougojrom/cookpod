@@ -2,8 +2,6 @@ defmodule Cookpod.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  require IEx;
-
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true
