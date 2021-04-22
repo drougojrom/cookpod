@@ -48,7 +48,14 @@ defmodule Cookpod.MixProject do
       {:phoenix_slime, "~> 0.13.1"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:argon2_elixir, "~> 2.3"},
-      {:ex_machina, "~> 2.4", only: :test}
+      {:ex_machina, "~> 2.4", only: :test},
+      {:arc, "~> 0.11.0"},
+      {:arc_ecto, "~> 0.11.3"},
+      {:ex_aws, "~> 2.0"},
+      {:ex_aws_s3, "~> 2.0"},
+      {:hackney, "~> 1.6"},
+      {:poison, "~> 3.1"},
+      {:sweet_xml, "~> 0.6"}
     ]
   end
 
